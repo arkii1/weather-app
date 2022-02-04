@@ -1,4 +1,8 @@
 import getWeather from './handleWeatherData';
 
-console.log('This is a test!');
-getWeather('London');
+function testFunction(data) {
+    console.log(data);
+}
+
+console.log('Is this working');
+getWeather('London', testFunction);
