@@ -47,7 +47,7 @@ body {
 
 .search-box {
     position: absolute;
-    top: 55%;
+    top: 58%;
     left: 50%;
     transform: translate(-50%, -50%);
     background-color: #2f3640;
@@ -105,7 +105,7 @@ body {
     gap: 8px;
     justify-content: center;
     align-items: center;
-    opacity: 1;
+    opacity: 0;
     transition: 1s;
 }
 
@@ -113,6 +113,7 @@ body {
     color: white;
     font-size: 20px;
     letter-spacing: 2px;
+    white-space: nowrap;
 }
 
 .results-container.active {

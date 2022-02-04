@@ -1,3 +1,20 @@
+import getWeather from './handleWeatherData';
+import getLocationFromSearchBar from './input';
+
+function updateWeather(data) {
+    const container = document.querySelector('[data-results="container"]');
+    if (!container.classList.contains('active')) { container.classList.add('active'); }
+
+    const tempElement = document.querySelector('[data-results="temp"]');
+    tempElement.innerHTML = `Temperature: ${data.main.temp}&#8451`;
+
+    const humidElement = document.querySelector('[data-results="humidity"]');
+    humidElement.innerHTML = `Humidity: ${data.main.humidity}%`;
+
+    const descripElement = document.querySelector('[data-results="description"]');
+    descripElement.innerHTML = `Description: ${data.weather[0].description}`;
+}
+
 function initHeader() {
     const textContainer = document.createElement('div');
     textContainer.classList.add('txt-container');
@@ -23,11 +40,15 @@ function initSearchBar() {
     inputText.classList.add('search-txt');
     inputText.placeholder = 'E.g. London';
     inputText.type = 'text';
+    inputText.dataset.id = 'text';
     searchBarBox.appendChild(inputText);
 
     const searchBtn = document.createElement('a');
     searchBtn.classList.add('search-btn');
     searchBtn.href = '#';
+    searchBtn.addEventListener('click', () => {
+        getWeather(getLocationFromSearchBar(), updateWeather);
+    });
     searchBarBox.appendChild(searchBtn);
 
     const icon = document.createElement('i');
@@ -40,6 +61,7 @@ function initSearchBar() {
 function initWeatherResults() {
     const resultsContainer = document.createElement('div');
     resultsContainer.classList.add('results-container');
+    resultsContainer.dataset.results = 'container';
 
     const temp = document.createElement('span');
     temp.classList.add('temp');
@@ -71,13 +93,4 @@ export function initPage() {
     initHeader();
     initSearchBar();
     initWeatherResults();
-}
-
-export function updateWeather(data) {
-    const tempElement = document.querySelector('[data-results="temp"]');
-    tempElement.innerHTML = `Temperature: ${data.main.temp}`;
-    const humidElement = document.querySelector('[data-results="humidity"]');
-    humidElement.innerHTML = `Humidity: ${data.main.humidity}`;
-    const descripElement = document.querySelector('[data-results="description"]');
-    descripElement.innerHTML = `Description: ${data.weather[0].description}`;
 }
