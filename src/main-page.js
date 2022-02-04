@@ -37,6 +37,28 @@ function initSearchBar() {
     document.body.appendChild(searchBarBox);
 }
 
+function initWeatherResults() {
+    const resultsContainer = document.createElement('div');
+    resultsContainer.classList.add('results-container');
+
+    const temp = document.createElement('span');
+    temp.classList.add('temp');
+    temp.dataset.results = 'temp';
+    resultsContainer.appendChild(temp);
+
+    const humidity = document.createElement('span');
+    humidity.classList.add('humidity');
+    humidity.dataset.results = 'humidity';
+    resultsContainer.appendChild(humidity);
+
+    const description = document.createElement('span');
+    description.classList.add('description');
+    description.dataset.results = 'description';
+    resultsContainer.appendChild(description);
+
+    document.body.appendChild(resultsContainer);
+}
+
 export function initFontAwesomeScript() {
     const fontAwesomeScript = document.createElement('script');
     fontAwesomeScript.src = 'https://kit.fontawesome.com/9f5feb954e.js';
@@ -48,4 +70,14 @@ export function initFontAwesomeScript() {
 export function initPage() {
     initHeader();
     initSearchBar();
+    initWeatherResults();
+}
+
+export function updateWeather(data) {
+    const tempElement = document.querySelector('[data-results="temp"]');
+    tempElement.innerHTML = `Temperature: ${data.main.temp}`;
+    const humidElement = document.querySelector('[data-results="humidity"]');
+    humidElement.innerHTML = `Humidity: ${data.main.humidity}`;
+    const descripElement = document.querySelector('[data-results="description"]');
+    descripElement.innerHTML = `Description: ${data.weather[0].description}`;
 }
