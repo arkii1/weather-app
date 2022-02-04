@@ -1,7 +1,6 @@
 // import getWeather from './handleWeatherData';
-import initPage from './main-page';
+import { initFontAwesomeScript, initPage } from './main-page';
 import './style.css';
 
-console.log('Is this working');
-
+initFontAwesomeScript();
 initPage();
