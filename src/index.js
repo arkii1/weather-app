@@ -1,8 +1,7 @@
-import getWeather from './handleWeatherData';
-
-function testFunction(data) {
-    console.log(data);
-}
+// import getWeather from './handleWeatherData';
+import initPage from './main-page';
+import './style.css';
 
 console.log('Is this working');
-getWeather('London', testFunction);
+
+initPage();

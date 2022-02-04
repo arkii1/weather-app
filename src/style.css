@@ -35,10 +35,8 @@ body {
     justify-content: center;
     align-items: center;
     transition: 0.4s;
-}
-
-a {
     text-decoration: none;
+
 }
 
 .search-txt {
