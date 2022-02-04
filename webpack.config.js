@@ -6,11 +6,6 @@ const ESLintWebpackPlugin = require('eslint-webpack-plugin');
 module.exports = {
     mode: 'development',
     entry: './src/index.js',
-    output: {
-        filename: 'bundle.js',
-        path: path.resolve(__dirname, 'dist'),
-        clean: true,
-    },
     plugins: [
         new HtmlWebpackPlugin({
             title: 'Weather App',
@@ -21,4 +16,17 @@ module.exports = {
         static: './dist',
     },
     devtool: 'inline-source-map',
+    module: {
+        rules: [
+            {
+                test: /\.css$/i,
+                use: ['style-loader', 'css-loader'],
+            },
+        ],
+    },
+    output: {
+        filename: 'bundle.js',
+        path: path.resolve(__dirname, 'dist'),
+        clean: true,
+    },
 };
